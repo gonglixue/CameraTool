@@ -38,7 +38,7 @@ void TriMesh::LoadOBJ(QString file_name)
         line = in.readLine();
         if(line.isEmpty())
         {
-            line = in.readLine();
+            //line = in.readLine();
             continue;
         }
         if(line[0] == '#')
