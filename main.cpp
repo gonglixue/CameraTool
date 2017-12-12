@@ -1,6 +1,5 @@
 #include "mainwindow.h"
 #include <QApplication>
-#include "trimesh.h"
 
 int main(int argc, char *argv[])
 {
@@ -8,8 +7,6 @@ int main(int argc, char *argv[])
     MainWindow w;
     w.show();
 
-    TriMesh testmesh;
-    testmesh.LoadOBJ("F:/bunny.obj");
 
     return a.exec();
 }
