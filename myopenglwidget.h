@@ -70,7 +70,6 @@ private:
     GLuint light_pos_loc_;
     GLuint camera_pos_loc_;
 
-    QCamera camera_;
     QMatrix4x4 model_;
     QMatrix4x4 view_;
     QMatrix4x4 projection_;

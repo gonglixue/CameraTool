@@ -27,12 +27,12 @@ public:
     const int* Index() const {return indices_.data(); }
     int GetVertexNum() const {return vertices_.size(); }
     int GetIndexNum() const {return indices_.size(); }
-
+    void LoadOBJ(QString filename);
 private:
     std::vector<Vertex> vertices_;
     std::vector<int> indices_;
     void Clear();
-    void LoadOBJ(QString filename);
+
 
 };
 

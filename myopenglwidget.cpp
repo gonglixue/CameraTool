@@ -36,6 +36,11 @@ void MyOpenGLWidget::resizeGL(int w, int h)
     projection_.perspective(camera_.Zoom, GLfloat(w)/h, 0.01f, 100.0f);
 }
 
+void MyOpenGLWidget::keyPressEvent(QKeyEvent *event)
+{
+
+}
+
 void MyOpenGLWidget::mousePressEvent(QMouseEvent *event)
 {
 
@@ -68,5 +73,10 @@ void MyOpenGLWidget::initializeGL()
     glEnable(GL_DEPTH_TEST);
 
     shader_program_ = new QOpenGLShaderProgram;
+
+}
+
+void MyOpenGLWidget::paintGL()
+{
 
 }

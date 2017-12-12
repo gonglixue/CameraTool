@@ -45,7 +45,7 @@ void TriMesh::LoadOBJ(QString file_name)
             qDebug() << line;
         else if(line.left(2) == "v ")
         {
-            line.remove(0, 1);  // remove "v "
+            line.remove(0, 2);  // remove "v "
             QStringList vertex_coords = line.split(' ', QString::SkipEmptyParts);
             x = vertex_coords[0].toFloat();
             y = vertex_coords[1].toFloat();
@@ -67,7 +67,7 @@ void TriMesh::LoadOBJ(QString file_name)
         }
         else if(line.left(2) == "vn")
         {
-            line.remove(0,2);  // remove "vn "
+            line.remove(0,3);  // remove "vn "
             QStringList vertex_normal = line.split(' ', QString::SkipEmptyParts);
             x = vertex_normal[0].toFloat();
             y = vertex_normal[1].toFloat();
@@ -77,7 +77,7 @@ void TriMesh::LoadOBJ(QString file_name)
         }
         else if(line.left(2) == "vt")
         {
-            line.remove(0,2);
+            line.remove(0,3);
             QStringList vertex_texcoords = line.split(' ', QString::SkipEmptyParts);
             x = vertex_texcoords[0].toFloat();
             y = vertex_texcoords[1].toFloat();
@@ -86,7 +86,7 @@ void TriMesh::LoadOBJ(QString file_name)
         }
         else if(line.left(2) == "f ")
         {
-            line.remove(0, 1);
+            line.remove(0, 2);
             QStringList face_index = line.split(' ', QString::SkipEmptyParts);
 
             for(int i=0; i<3; i++)
@@ -94,12 +94,17 @@ void TriMesh::LoadOBJ(QString file_name)
                 QString aVert = face_index[i];
                 QStringList aVert_index = aVert.split('/');
                 int v_index = aVert_index[0].toInt();
-                // int t_index = aVert_index[1].toInt();
-                int n_index = aVert_index[2].toInt();
+
+
 
                 Vertex vert;
                 vert.position = vertices_coords[v_index-1];
-                vert.normal = vertices_normal[n_index-1];
+
+                if(aVert_index.length() > 2){
+                    int n_index = aVert_index[2].toInt();
+                    int t_index = aVert_index[1].toInt();
+                    vert.normal = vertices_normal[n_index-1];
+                }
 
                 vertices_.push_back(vert);
             }
