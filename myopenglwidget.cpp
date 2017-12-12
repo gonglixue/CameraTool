@@ -97,6 +97,22 @@ void MyOpenGLWidget::initializeGL()
 
 void MyOpenGLWidget::paintGL()
 {
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    this->VAO.bind();
+
+    // model matrix update
+
+    view_ = camera_.GetViewMatrix();
+
+    this->shader_program_->bind();
+
+    shader_program_->setUniformValue(model_mat_loc_, model_);
+    shader_program_->setUniformValue(view_mat_loc_, view_);
+    shader_program_->setUniformValue(projection_mat_loc_, projection_);
+    shader_program_->setUniformValue(light_pos_loc_, light_pos_);
+
+    glDrawElements(GL_TRIANGLES, this->mesh_.GetIndexNum(), GL_UNSIGNED_INT, 0);
+    shader_program_->release();
 
 }
 
